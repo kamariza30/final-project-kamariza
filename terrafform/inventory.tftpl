@@ -1,0 +1,18 @@
+[web]
+%{ for instance in instances ~}
+%{ if instance.tags_all.Name == "web-server" ~}
+${instance.tags_all.Name} ansible_host=${instance.private_ip}
+%{ endif ~}
+%{ endfor ~}
+
+[monitoring]
+%{ for instance in instances ~}
+%{ if instance.tags_all.Name == "grafana-server" ~}
+${instance.tags_all.Name} ansible_host=${instance.private_ip}
+%{ endif ~}
+%{ endfor ~}
+
+[all:vars]
+ansible_user=ubuntu
+ansible_ssh_private_key_file=/home/ubuntu/.ssh/ansible-key.pem
+ansible_python_interpreter=/usr/bin/python3
