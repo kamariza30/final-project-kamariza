@@ -61,6 +61,7 @@ resource "aws_security_group" "private_sg" {
     private_ip = "10.0.0.5"
 
     iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+    key_name = aws_key_pair.ansible.key_name
 
     tags = {
       Name = "web-server"
