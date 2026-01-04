@@ -1,0 +1,12 @@
+---
+- name: Facts
+  hosts: all
+
+  tasks:
+    - name: Display system facts
+      debug:
+        msg: |
+          Hostname: {{ ansible_facts['hostname'] }}
+          OS: {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}
+          IP: {{ ansible_facts['default_ipv4']['address'] }}
+          Memory: {{ ansible_facts['memtotal_mb'] }} MB
